@@ -1,6 +1,19 @@
 import 'package:get/get.dart';
 
 class RecommendationPageController extends GetxController {
+  var rekomendasi = false.obs;
+  var disimpan = false.obs;
+  
+  selectRekomenasi() {
+    this.rekomendasi.value = true;
+    this.disimpan.value = false;
+  }
+
+  selectDisimpan() {
+    this.disimpan.value = true;
+    this.rekomendasi.value = false;
+  }
+
   List<Toko> list_of_job = [];
 
   @override

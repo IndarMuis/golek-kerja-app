@@ -95,22 +95,50 @@ class ProfileContent extends StatelessWidget {
             child: Container(
               width: double.infinity,
               margin: EdgeInsets.only(bottom: 30, top: 30),
-              child: ElevatedButton(
-                  onPressed: () {
-                    Get.offAllNamed(Routes.LOGIN);
-                  },
-                  style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.all(13),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      primary: errorColor),
-                  child: Text(
-                    "Log Out",
-                    style: primaryTextStyle.copyWith(
-                        fontSize: 18,
-                        fontWeight: semiBold,
-                        color: backgroundColor),
-                  )),
+              child: Column(
+                children: [
+                  ElevatedButton(
+                      onPressed: () {
+                       Get.toNamed(Routes.PROFILE_EDIT);
+                      },
+                      style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.all(10),
+                          minimumSize: Size(double.infinity, 30),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            
+                          ),
+                          primary: secondaryColor,
+                          shadowColor: Colors.transparent),
+                      child: Text(
+                        "Edit Profile",
+                        style: primaryTextStyle.copyWith(
+                            fontSize: 18,
+                            fontWeight: semiBold,
+                            color: backgroundColor),
+                      )),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  ElevatedButton(
+                      onPressed: () {
+                        Get.offAllNamed(Routes.LOGIN);
+                      },
+                      style: ElevatedButton.styleFrom(
+                          padding: EdgeInsets.all(10),
+                          minimumSize: Size(double.infinity, 30),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          primary: errorColor),
+                      child: Text(
+                        "Log Out",
+                        style: primaryTextStyle.copyWith(
+                            fontSize: 18,
+                            fontWeight: semiBold,
+                            color: backgroundColor),
+                      )),
+                ],
+              ),
             ),
           )
         ],

@@ -1,15 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:lokerku/app/modules/recommendation_page/views/widgets/recommendation_header.dart';
-import 'package:lokerku/app/modules/recommendation_page/views/widgets/recommendation_job_card.dart';
 import 'package:lokerku/app/routes/app_pages.dart';
-import 'package:lokerku/app/theme.dart';
+import '../controllers/saved_page_controller.dart';
+import 'widgets/saved_job_card.dart';
 
-import '../controllers/recommendation_page_controller.dart';
-
-class RecommendationPageView extends GetView<RecommendationPageController> {
-  var c = Get.put(RecommendationPageController());
+class SavedPageView extends GetView<SavedPageController> {
+  // var c = Get.put(RecommendationPageController());
   @override
   Widget build(BuildContext context) {
     var list_of_job = [
@@ -62,26 +59,16 @@ class RecommendationPageView extends GetView<RecommendationPageController> {
           gambar: "assets/gambar1.png",
           tanggal: "28 Oktober 2021"),
     ];
-    return GridView.count(
-      crossAxisSpacing: 10,
-      mainAxisSpacing: 10,
-      crossAxisCount: 2,
-      childAspectRatio: 25 / 38,
-      padding: EdgeInsets.all(10),
+    return ListView(
       children: list_of_job.map((e) {
-        return GestureDetector(
-          onTap: () {
-            Get.toNamed(Routes.DETAIL_JOB);
-          },
-          child: RecommendationJobCard(
-            namaToko: e.namaToko,
-            gambar: e.gambar,
-            lowongan: e.lowongan,
-            alamat: e.alamat,
-            tanggal: e.tanggal,
-          ),
+        return SavedJobCard(
+          namaToko: e.namaToko,
+          gambar: e.gambar,
+          lowongan: e.lowongan,
+          alamat: e.alamat, 
+          tanggal: e.tanggal,
         );
-      }).toList(),
+      } ).toList(),
     );
 
     // return Column(

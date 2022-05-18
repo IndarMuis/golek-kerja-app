@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:lokerku/app/modules/job_vacancy/controllers/job_vacancy_controller.dart';
 import 'package:lokerku/app/modules/main_page/views/main_page_vacancy.dart';
 import 'package:lokerku/app/modules/main_page/views/main_page_view.dart';
 import 'package:lokerku/app/modules/profile_page/views/profile_page_view.dart';
 import 'package:lokerku/app/theme.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
-import '../controllers/home_controller.dart';
-
-class HomeView extends GetView<HomeController> {
+class JobVacancyView extends GetView<JobVacancyController> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -20,9 +19,10 @@ class HomeView extends GetView<HomeController> {
           navBarHeight: 75,
           screens: [
             // RecommendationPageView(),
-            // MainPageVacancy(),
-            MainPageView(),
-            ProfilePageView(),
+            MainPageVacancy(),
+            Center(
+              child: Text("Pelamar"),
+            )
           ],
           items: [
            PersistentBottomNavBarItem(

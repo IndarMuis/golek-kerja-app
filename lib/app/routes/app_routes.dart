@@ -16,6 +16,13 @@ abstract class Routes {
   static const RECOMMENDATION_PAGE = _Paths.RECOMMENDATION_PAGE;
   static const PROFILE_PAGE = _Paths.PROFILE_PAGE;
   static const JOB_DETAIL = _Paths.JOB_DETAIL;
+  static const MAIN_PAGE = _Paths.MAIN_PAGE;
+  static const DISIMPAN = _Paths.DISIMPAN;
+  static const SAVED_PAGE = _Paths.SAVED_PAGE;
+  static const JOB_VACANCY = _Paths.JOB_VACANCY;
+  static const MAIN_PAGE_VACANCY = _Paths.MAIN_PAGE_VACANCY;
+  static const JOB_HISTORY = _Paths.JOB_HISTORY;
+  static const PROFILE_EDIT = _Paths.PROFILE_EDIT;
 }
 
 abstract class _Paths {
@@ -31,4 +38,11 @@ abstract class _Paths {
   static const RECOMMENDATION_PAGE = '/recommendation-page';
   static const PROFILE_PAGE = '/profile-page';
   static const JOB_DETAIL = '/job-detail';
+  static const MAIN_PAGE = '/main-page';
+  static const DISIMPAN = '/disimpan';
+  static const SAVED_PAGE = '/saved-page';
+  static const JOB_VACANCY = '/job-vacancy';
+  static const MAIN_PAGE_VACANCY = '/main-page-vacancy';
+  static const JOB_HISTORY = '/job-history';
+  static const PROFILE_EDIT = '/profile-edit';
 }
