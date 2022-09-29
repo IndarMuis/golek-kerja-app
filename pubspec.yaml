@@ -2,24 +2,32 @@ name: lokerku
 version: 1.0.0+1
 publish_to: none
 description: A new Flutter project.
-environment:
+environment: 
   sdk: '>=2.16.2 <3.0.0'
 
-dependencies:
+dependencies: 
   cupertino_icons: ^1.0.2
-  flutter:
-    sdk: flutter
   get: 4.6.1
   google_fonts: 2.3.1
   intl: ^0.17.0
   persistent_bottom_nav_bar: ^4.0.2
-
-dev_dependencies:
-  flutter_lints: ^1.0.0
-  flutter_test:
+  dio: 4.0.6
+  syncfusion_flutter_datepicker: 20.2.40
+  get_storage: 2.0.3
+  image_picker: 0.8.5+3
+  flutter: 
     sdk: flutter
 
-flutter:
-  assets:
+dependency_overrides:
+  image_picker_android: 0.8.4+13
+
+dev_dependencies: 
+  flutter_lints: ^1.0.0
+  flutter_test: 
+    sdk: flutter
+
+flutter: 
+  assets: 
     - assets/
   uses-material-design: true
+

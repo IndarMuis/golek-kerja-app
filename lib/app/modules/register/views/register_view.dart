@@ -15,7 +15,9 @@ class RegisterView extends GetView<RegisterController> {
           backgroundColor: backgroundColor,
           body: ListView(
             children: [
-              RegisternHeader(title: "Registrasi",),
+              RegisternHeader(
+                title: "Registrasi",
+              ),
               SizedBox(
                 height: 30,
               ),

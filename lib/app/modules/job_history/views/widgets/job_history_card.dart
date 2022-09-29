@@ -31,7 +31,7 @@ class JobHistoryCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(10),
             child: Text(
-              "${namaToko}",
+              "Perusahaan ${namaToko}",
               style:
                   primaryTextStyle.copyWith(fontSize: 18, fontWeight: medium),
               overflow: TextOverflow.ellipsis,
@@ -52,7 +52,7 @@ class JobHistoryCard extends StatelessWidget {
               children: [
                 Expanded(
                     child: Text(
-                  "${lowongan}",
+                  "Posisi : ${lowongan}",
                   style:
                       primaryTextStyle.copyWith(fontSize: 17, fontWeight: bold),
                 )),
@@ -65,7 +65,7 @@ class JobHistoryCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10),
             child: Text(
-              "${alamat}",
+              "Alamat : ${alamat}",
               style:
                   primaryTextStyle.copyWith(fontSize: 16, fontWeight: medium),
             ),
@@ -76,7 +76,7 @@ class JobHistoryCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
             child: Text(
-              "${tanggal}",
+              "Batas Pendaftaran : ${tanggal}",
               style:
                   primaryTextStyle.copyWith(fontSize: 16, fontWeight: medium),
             ),

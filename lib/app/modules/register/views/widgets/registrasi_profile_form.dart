@@ -71,15 +71,15 @@ class RegistrasiProfileForm extends GetView<RegisterController> {
                                 date); //pickedDate output format => 2021-03-10 00:00:00.000
                             String getDate =
                                 DateFormat('dd-MM-yyyy').format(date);
-                            controller.inputTanggalLahir.value = getDate;
+                            // controller.inputTanggalLahir.value = getDate;
                           }
                         },
                         decoration: InputDecoration(
                           hintStyle:
                               primaryTextStyle.copyWith(fontWeight: light),
-                          hintText: controller.inputTanggalLahir.value.isEmpty
-                              ? 'Tap Here'
-                              : controller.inputTanggalLahir.value,
+                          // hintText: controller.inputTanggalLahir.value.isEmpty
+                          //     ? 'Tap Here'
+                          //     : controller.inputTanggalLahir.value,
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(15),
                           ),

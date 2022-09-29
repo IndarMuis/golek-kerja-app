@@ -2,74 +2,43 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:lokerku/app/modules/job_history/views/widgets/job_history_card.dart';
-import 'package:lokerku/app/routes/app_pages.dart';
+import 'package:lokerku/app/theme.dart';
 import '../controllers/job_history_controller.dart';
 
 class JobHistoryView extends GetView<JobHistoryController> {
-  // var c = Get.put(RecommendationPageController());
+  var c = Get.put(JobHistoryController());
   @override
   Widget build(BuildContext context) {
-    var list_of_job = [
-      Toko(
-          namaToko: "Bumdesa Tuah Baru",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Toga Mart",
-          lowongan: "Sales",
-          alamat: "Veteran Selatan",
-          gambar: "assets/gambar2.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Bumdesa Tuah Baru",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Toga Mart",
-          lowongan: "Sales",
-          alamat: "Veteran Selatan",
-          gambar: "assets/gambar2.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Bumdesa Tuah Baru",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Toga Mart",
-          lowongan: "Sales",
-          alamat: "Veteran Selatan",
-          gambar: "assets/gambar2.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Bumdesa Tuah Baru",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Toga Mart",
-          lowongan: "Sales",
-          alamat: "Veteran Selatan",
-          gambar: "assets/gambar2.png",
-          tanggal: "28 Oktober 2021"),
-    ];
-    return ListView(
-      children: list_of_job.map((e) {
-        return JobHistoryCard(
-          namaToko: e.namaToko,
-          gambar: e.gambar,
-          lowongan: e.lowongan,
-          alamat: e.alamat, 
-          tanggal: e.tanggal,
-        );
-      } ).toList(),
-    );
+    return Obx(() => (controller.isLoading.isTrue)
+        ? Center(
+            child: CircularProgressIndicator(
+            color: primaryColor,
+          ))
+        : (controller.riwayatLowongan.isEmpty)
+            ? Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(defaultMargin),
+                  child: Text(
+                    "Anda belum pernah membuat lowongan",
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: medium,
+                      color: Colors.black38,
+                    ),
+                  ),
+                ),
+              )
+            : ListView(
+                children: c.riwayatLowongan.map((e) {
+                  return JobHistoryCard(
+                    namaToko: e['nama_toko'],
+                    gambar: e['gambar'] ?? "assets/gambar1.png",
+                    lowongan: e['posisi'],
+                    alamat: e['alamat'],
+                    tanggal: e['tgl_akhir'],
+                  );
+                }).toList(),
+              ));
   }
 }
 

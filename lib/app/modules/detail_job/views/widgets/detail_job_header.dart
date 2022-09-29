@@ -17,7 +17,7 @@ class DetailJobHeader extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Get.offAllNamed(Routes.HOME);
+                Get.back();
               },
               child: Icon(
                 Icons.arrow_back_ios,
@@ -25,7 +25,9 @@ class DetailJobHeader extends StatelessWidget {
                 color: backgroundColor,
               ),
             ),
-            SizedBox(width: 70,),
+            SizedBox(
+              width: 70,
+            ),
             Text(
               " Detail Pekerjaan",
               style: primaryTextStyle.copyWith(

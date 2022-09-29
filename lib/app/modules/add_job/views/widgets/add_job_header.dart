@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
-import 'package:lokerku/app/routes/app_pages.dart';
 import 'package:lokerku/app/theme.dart';
 
 class AddJobHeader extends StatelessWidget {
@@ -17,7 +16,7 @@ class AddJobHeader extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Get.offAllNamed(Routes.JOB_VACANCY);
+                Get.back();
               },
               child: Icon(
                 Icons.arrow_back_ios,
@@ -25,9 +24,11 @@ class AddJobHeader extends StatelessWidget {
                 color: backgroundColor,
               ),
             ),
-            SizedBox(width: 70,),
+            SizedBox(
+              width: 70,
+            ),
             Text(
-              "Tambah Pekerjaan",
+              "Buat Lowongan",
               style: primaryTextStyle.copyWith(
                 fontSize: 20,
                 fontWeight: semiBold,

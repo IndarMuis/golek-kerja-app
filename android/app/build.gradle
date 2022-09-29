@@ -44,7 +44,7 @@ android {
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "com.lokerku.lokerku"
-        minSdkVersion flutter.minSdkVersion
+        minSdkVersion 19
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
@@ -57,6 +57,12 @@ android {
             signingConfig signingConfigs.debug
         }
     }
+    // lintOptions {
+    //     disable 'InvalidPackage'
+    //     disable "Instantiatable"
+    //     checkReleaseBuilds false
+    //     abortOnError false
+    // }
 }
 
 flutter {

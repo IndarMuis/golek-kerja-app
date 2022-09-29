@@ -3,14 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:lokerku/app/modules/recommendation_page/views/recommendation_page_view.dart';
 import 'package:lokerku/app/modules/saved_page/views/saved_page_view.dart';
+import 'package:lokerku/app/routes/app_pages.dart';
 
 import '../../../theme.dart';
 import '../controllers/main_page_controller.dart';
 
 class MainPageView extends GetView<MainPageController> {
+  var controller = Get.put(MainPageController());
   @override
   Widget build(BuildContext context) {
-    
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -36,11 +37,15 @@ class MainPageView extends GetView<MainPageController> {
                         ),
                       ),
                     ),
-                    Icon(
-                      Icons.message,
-                      size: 30,
-                      color: backgroundColor,
-                    )
+                    IconButton(
+                        onPressed: () {
+                          Get.toNamed(Routes.HISTORY_LAMARAN_KERJA);
+                        },
+                        icon: Icon(
+                          Icons.history,
+                          size: 40,
+                          color: backgroundColor,
+                        ))
                   ],
                 ),
                 SizedBox(height: 20),
@@ -48,8 +53,8 @@ class MainPageView extends GetView<MainPageController> {
                   children: [
                     Expanded(
                       child: TextField(
+                        controller: controller.searchController,
                         decoration: InputDecoration(
-                          prefixIcon: Icon(Icons.search),
                           hintText: "Pencarian",
                           hintStyle: primaryTextStyle.copyWith(
                               fontSize: 16,
@@ -65,15 +70,15 @@ class MainPageView extends GetView<MainPageController> {
                           fillColor: backgroundColor.withOpacity(0.7),
                           filled: true,
                         ),
+                        onChanged: (value) {
+                          controller.recommendedationPageController
+                              .searchLowongan(
+                                  keyword: controller.searchController.text);
+                        },
                       ),
                     ),
                     SizedBox(
                       width: 10,
-                    ),
-                    Icon(
-                      Icons.filter_alt,
-                      size: 30,
-                      color: backgroundColor,
                     ),
                   ],
                 )
@@ -87,33 +92,37 @@ class MainPageView extends GetView<MainPageController> {
           child: Column(
             children: [
               Container(
-                height: 60, 
+                height: 60,
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 decoration: BoxDecoration(
-                  color: backgroundColor,
-                  border: Border(bottom: BorderSide(width: 0.5, color: Colors.grey))
-                ),
+                    color: backgroundColor,
+                    border: Border(
+                        bottom: BorderSide(width: 0.5, color: Colors.grey))),
                 child: TabBar(
-                  labelStyle: primaryTextStyle.copyWith(fontWeight: semiBold, fontSize: 15),
-                  labelColor: primaryColor,
-                  unselectedLabelColor: Colors.grey,
+                    labelStyle: primaryTextStyle.copyWith(
+                        fontWeight: semiBold, fontSize: 15),
+                    labelColor: primaryColor,
+                    unselectedLabelColor: Colors.grey,
                     // controller: tabController,
                     indicator: BoxDecoration(
-                      border: Border(bottom: BorderSide(width: 4, color: primaryColor,))
-                    ),
+                        border: Border(
+                            bottom: BorderSide(
+                      width: 4,
+                      color: primaryColor,
+                    ))),
                     tabs: [
                       Tab(
-                        text: "Rekomendasi",
+                        text: "Lowongan",
                       ),
                       Tab(
                         text: "Disimpan",
                       ),
                     ]),
               ),
-              Expanded(child: TabBarView(
-                children:  [
+              Expanded(
+                  child: TabBarView(children: [
                 RecommendationPageView(),
-               SavedPageView(),
+                SavedPageView(),
               ]))
             ],
           ),

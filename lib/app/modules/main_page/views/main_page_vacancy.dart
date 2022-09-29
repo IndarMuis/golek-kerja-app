@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:lokerku/app/modules/daftar_pelamar/views/daftar_pelamar_view.dart';
 import 'package:lokerku/app/modules/job_history/views/job_history_view.dart';
 import 'package:lokerku/app/modules/recommendation_page/views/recommendation_page_view.dart';
 import 'package:lokerku/app/modules/saved_page/views/saved_page_view.dart';
@@ -10,6 +11,7 @@ import '../../../theme.dart';
 import '../controllers/main_page_controller.dart';
 
 class MainPageVacancy extends GetView<MainPageController> {
+  var controller = Get.put(MainPageController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -31,22 +33,21 @@ class MainPageVacancy extends GetView<MainPageController> {
                       child: Text(
                         "Buka Lowongan",
                         style: primaryTextStyle.copyWith(
-                          fontSize: 30,
+                          fontSize: 25,
                           fontWeight: semiBold,
                           color: backgroundColor,
                         ),
                       ),
                     ),
-                    GestureDetector(
-                      onTap: () {
-                        Get.toNamed(Routes.ADD_JOB);
-                      },
-                      child: Icon(
-                        Icons.add_to_photos_sharp,
-                        size: 30,
-                        color: backgroundColor,
-                      ),
-                    )
+                    IconButton(
+                        onPressed: () {
+                          Get.toNamed(Routes.ADD_JOB);
+                        },
+                        icon: Icon(
+                          Icons.add_to_photos_sharp,
+                          size: 35,
+                          color: backgroundColor,
+                        )),
                   ],
                 ),
               ],
@@ -89,9 +90,7 @@ class MainPageVacancy extends GetView<MainPageController> {
               Expanded(
                   child: TabBarView(children: [
                 JobHistoryView(),
-                Center(
-                  child: Text("Pelamar"),
-                )
+                DaftarPelamarView(),
               ]))
             ],
           ),

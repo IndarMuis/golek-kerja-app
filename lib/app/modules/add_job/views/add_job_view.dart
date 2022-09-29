@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:lokerku/app/modules/add_job/views/widgets/add_job_header.dart';
+import 'package:lokerku/app/routes/app_pages.dart';
 import 'package:lokerku/app/theme.dart';
 
 import '../controllers/add_job_controller.dart';
@@ -16,13 +17,17 @@ class AddJobView extends GetView<AddJobController> {
           children: [
             AddJobHeader(),
             SizedBox(
-              height: 30,
+              height: 20,
             ),
             AddJobContent(),
           ],
         ),
         bottomNavigationBar: Container(
-          padding: EdgeInsets.only(top: defaultMargin, left: defaultMargin, right: defaultMargin, bottom: 40),
+          padding: EdgeInsets.only(
+              top: defaultMargin,
+              left: defaultMargin,
+              right: defaultMargin,
+              bottom: 40),
           decoration: BoxDecoration(
             color: Color(0xffF9F9F9),
             // color: Colors.black,
@@ -31,7 +36,9 @@ class AddJobView extends GetView<AddJobController> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  Get.offAllNamed(Routes.HOME);
+                },
                 child: Container(
                   height: 50,
                   width: MediaQuery.of(context).size.width / 2.5,
@@ -43,22 +50,34 @@ class AddJobView extends GetView<AddJobController> {
                   child: Center(
                       child: Text(
                     "Batal",
-                    style: primaryTextStyle.copyWith(fontSize: 20, color: primaryColor),
+                    style: primaryTextStyle.copyWith(
+                        fontSize: 20, color: primaryColor),
                   )),
                 ),
               ),
               GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  print(controller.posisi.text);
+                  print(controller.keahlianKhusus.text);
+                  print(controller.gaji.text);
+                  print(controller.pilihanJenisKelamin.value);
+                  print(controller.umur.text);
+                  print(controller.pilihanPendidikan.value);
+                  print(controller.domisili.text);
+
+                  Get.toNamed(Routes.CONTINUED_PAGE_ADD_JOB);
+                },
                 child: Container(
                   height: 50,
                   width: MediaQuery.of(context).size.width / 2.5,
                   decoration: BoxDecoration(
-                     color: secondaryColor,
+                      color: secondaryColor,
                       borderRadius: BorderRadius.circular(15)),
                   child: Center(
                       child: Text(
-                    "Batal",
-                    style: primaryTextStyle.copyWith(fontSize: 20, color: backgroundColor),
+                    "Lanjut",
+                    style: primaryTextStyle.copyWith(
+                        fontSize: 20, color: backgroundColor),
                   )),
                 ),
               ),

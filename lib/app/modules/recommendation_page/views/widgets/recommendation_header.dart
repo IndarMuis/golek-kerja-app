@@ -27,11 +27,6 @@ class RecommendationHeader extends StatelessWidget {
                     ),
                   ),
                 ),
-                Icon(
-                  Icons.message,
-                  size: 30,
-                  color: backgroundColor,
-                )
               ],
             ),
             SizedBox(height: 35),
@@ -47,8 +42,8 @@ class RecommendationHeader extends StatelessWidget {
                           fontWeight: light,
                           color: Colors.black.withOpacity(0.5)),
                       contentPadding: EdgeInsets.all(13),
-                     focusColor: backgroundColor,
-                     hoverColor: backgroundColor,
+                      focusColor: backgroundColor,
+                      hoverColor: backgroundColor,
                       disabledBorder: InputBorder.none,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
@@ -58,8 +53,6 @@ class RecommendationHeader extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 10,),
-                Icon(Icons.filter_alt, size: 30, color: backgroundColor,),
               ],
             )
           ],

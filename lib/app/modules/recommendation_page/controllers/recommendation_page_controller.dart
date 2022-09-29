@@ -1,45 +1,81 @@
+import 'package:dio/dio.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:lokerku/app/routes/app_pages.dart';
 
 class RecommendationPageController extends GetxController {
   var rekomendasi = false.obs;
   var disimpan = false.obs;
-  
-  selectRekomenasi() {
-    this.rekomendasi.value = true;
-    this.disimpan.value = false;
-  }
-
-  selectDisimpan() {
-    this.disimpan.value = true;
-    this.rekomendasi.value = false;
-  }
+  var dataLowongan = {}.obs;
+  var jumlahData = 0.obs;
+  var isLoading = false.obs;
+  var token = "".obs;
+  var userType = 0.obs;
 
   List<Toko> list_of_job = [];
 
+  onClickJob({required int jumlahKlik, required int lowonganId}) async {
+    try {
+      await Dio().put("http://jobfair.lentera-lipuku.com/api/umkm/count",
+          queryParameters: {
+            "jumlahKlik": jumlahKlik,
+            "lowonganId": lowonganId,
+          },
+          options:
+              Options(headers: {"authorization": "Bearer ${token.value}"}));
+
+      Get.toNamed(Routes.DETAIL_JOB, arguments: {
+        "lowongan_id": lowonganId,
+      });
+    } on DioError catch (e) {
+      print(e.response);
+    }
+  }
+
+  searchLowongan({String? keyword}) async {
+    isLoading.value = true;
+    try {
+      var data = await Dio().get(
+          "http://jobfair.lentera-lipuku.com/api/umkm/all",
+          queryParameters: {
+            "s": keyword,
+          },
+          options:
+              Options(headers: {"authorization": "bearer ${token.value}"}));
+      dataLowongan.value = await data.data;
+      jumlahData.value = await dataLowongan['data'].length;
+      print(dataLowongan.value);
+      print("berhasil");
+      isLoading.value = false;
+    } on DioError catch (e) {
+      isLoading.value = false;
+      print(e.response);
+    }
+  }
+
   @override
-  // ignore: must_call_super
-  void onInit() {
-    list_of_job = [
-    
-      Toko(
-          namaToko: "Bambu Desa",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Bambu Desa",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Bambu Desa",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-    ];
+  void onInit() async {
+    isLoading.value = true;
+    final box = GetStorage();
+    token.value = box.read("token");
+    userType.value = box.read("user_type");
+
+    try {
+      var data = (userType.value == 1)
+          ? await Dio().get(
+              "http://jobfair.lentera-lipuku.com/api/user/profil/umkm",
+              options:
+                  Options(headers: {"authorization": "bearer ${token.value}"}))
+          : await Dio().get("http://jobfair.lentera-lipuku.com/api/umkm/all",
+              options:
+                  Options(headers: {"authorization": "bearer ${token.value}"}));
+      dataLowongan.value = await data.data;
+      jumlahData.value = await dataLowongan['data'].length;
+    } on DioError catch (e) {
+      print(e.response);
+    }
+
+    isLoading.value = false;
   }
 }
 

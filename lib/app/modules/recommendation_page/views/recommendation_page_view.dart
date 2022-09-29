@@ -12,96 +12,46 @@ class RecommendationPageView extends GetView<RecommendationPageController> {
   var c = Get.put(RecommendationPageController());
   @override
   Widget build(BuildContext context) {
-    var list_of_job = [
-      Toko(
-          namaToko: "Bumdesa Tuah Baru",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Bumdesa Tuah Baru",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Bumdesa Tuah Baru",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Bumdesa Tuah Baru",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Bumdesa Tuah Baru",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Bumdesa Tuah Baru",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Bumdesa Tuah Baru",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-      Toko(
-          namaToko: "Bumdesa Tuah Baru",
-          lowongan: "Kasir",
-          alamat: "Selatbaru",
-          gambar: "assets/gambar1.png",
-          tanggal: "28 Oktober 2021"),
-    ];
-    return GridView.count(
-      crossAxisSpacing: 10,
-      mainAxisSpacing: 10,
-      crossAxisCount: 2,
-      childAspectRatio: 25 / 38,
-      padding: EdgeInsets.all(10),
-      children: list_of_job.map((e) {
-        return GestureDetector(
-          onTap: () {
-            Get.toNamed(Routes.DETAIL_JOB);
-          },
-          child: RecommendationJobCard(
-            namaToko: e.namaToko,
-            gambar: e.gambar,
-            lowongan: e.lowongan,
-            alamat: e.alamat,
-            tanggal: e.tanggal,
-          ),
-        );
-      }).toList(),
-    );
+    return Obx(() => (controller.isLoading.value)
+        ? Center(
+            child: CircularProgressIndicator(
+              color: primaryColor,
+            ),
+          )
+        : GridView.count(
+            crossAxisSpacing: 10,
+            mainAxisSpacing: 10,
+            crossAxisCount: 2,
+            childAspectRatio: 25 / 40,
+            padding: EdgeInsets.all(10),
+            children: List<Widget>.generate(
+                controller.jumlahData.value,
+                (index) => GestureDetector(
+                      onTap: () {
+                        print(controller.token.value);
+                        controller.onClickJob(
+                          jumlahKlik: 1,
+                          lowonganId: controller.dataLowongan['data'][index]
+                              ['id'] as int,
+                        );
 
-    // return Column(
-    //   children: [
-    //     // RecommendationHeader(),
-    //     Container(
-    //         margin: EdgeInsets.only(top: 200),
-    //         child: GridView.builder(
-    //           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-    //             crossAxisCount: 2,
-    //             crossAxisSpacing: 16,
-    //             mainAxisSpacing: 16,
-    //           ),
-    //           itemCount: list_of_job.length,
-    //           itemBuilder: (context, index) {
-    //             return Text("data");
-    //           },
-    //         ))
-    //   ],
-    // );
+                        print(controller.dataLowongan['data'][index]['id']);
+                      },
+                      child: RecommendationJobCard(
+                        namaToko: controller.dataLowongan['data'][index]
+                            ['nama_toko'],
+                        gambar: "assets/gambar1.png",
+                        lowongan: controller.dataLowongan['data'][index]
+                            ['posisi'],
+                        alamat: controller.dataLowongan['data'][index]['alamat']
+                            .toString(),
+                        tanggal: "Berakhir: " +
+                            controller.dataLowongan['data'][index]['tgl_akhir']
+                                .toString(),
+                        id: controller.dataLowongan['data'][index]['id']
+                            .toString(),
+                      ),
+                    ))));
   }
 }
 
